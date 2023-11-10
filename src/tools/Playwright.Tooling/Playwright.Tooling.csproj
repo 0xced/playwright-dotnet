@@ -12,10 +12,13 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
-        <PackageReference Include="NJsonSchema" Version="11.0.0-preview006" />
+<!--        <PackageReference Include="NJsonSchema" Version="11.0.0-preview006" />-->
         <PackageReference Include="Spectre.Console.Cli" Version="0.47.0" />
     </ItemGroup>
     <ItemGroup>
       <Compile Include="../../Playwright/API/Generated/**/*.cs" Link="Schemas/*" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\NJsonSchema\src\NJsonSchema\NJsonSchema.csproj" />
     </ItemGroup>
 </Project>
