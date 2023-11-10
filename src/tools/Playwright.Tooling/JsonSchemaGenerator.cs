@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.Playwright;
 using Namotion.Reflection;
@@ -35,17 +37,20 @@ internal class JsonSchemaGenerator : Command
 
     public override int Execute(CommandContext context)
     {
-        WriteSchema<BrowserTypeLaunchOptions>();
+        foreach (var type in typeof(JsonSchemaGenerator).Assembly.GetExportedTypes().Where(e => e.Name.EndsWith("Options")))
+        {
+            WriteSchema(type);
+        }
         return 0;
     }
 
-    private void WriteSchema<T>()
+    private void WriteSchema(Type type)
     {
         var settings = new SystemTextJsonSchemaGeneratorSettings { XmlDocumentationFormatting = XmlDocsFormattingMode.Markdown };
-        var jsonSchema = JsonSchema.FromType<T>(settings);
-        jsonSchema.Title = typeof(T).FullName;
+        var jsonSchema = JsonSchema.FromType(type, settings);
+        jsonSchema.Title = type.FullName;
         CleanupDescriptions(jsonSchema);
-        var schemaFilePath = GetSchemaFilePath($"{typeof(T).Name}.json");
+        var schemaFilePath = GetSchemaFilePath($"{type.Name}.json");
         File.WriteAllText(schemaFilePath, jsonSchema.ToJson());
         _console.WriteLine($"Written {schemaFilePath}");
     }

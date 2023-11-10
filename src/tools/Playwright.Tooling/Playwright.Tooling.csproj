@@ -16,7 +16,6 @@
         <PackageReference Include="Spectre.Console.Cli" Version="0.47.0" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="../../Playwright/API/Generated/Options/BrowserTypeLaunchOptions.cs" Link="Schemas/BrowserTypeLaunchOptions.cs" />
-      <Compile Include="../../Playwright/API/Generated/Types/Proxy.cs" Link="Schemas/Proxy.cs" />
+      <Compile Include="../../Playwright/API/Generated/**/*.cs" Link="Schemas/*" />
     </ItemGroup>
 </Project>
