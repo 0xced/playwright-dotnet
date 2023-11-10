@@ -32,7 +32,11 @@ internal static class Program
     internal static async Task<int> Main(string[] args)
     {
         var app = new CommandApp();
-        app.Configure(config => config.AddCommand<DriverDownloader>("download-drivers"));
+        app.Configure(config =>
+        {
+            config.AddCommand<DriverDownloader>("download-drivers");
+            config.AddCommand<JsonSchemaGenerator>("generate-json-schemas");
+        });
         return await app.RunAsync(args).ConfigureAwait(false);
     }
 }

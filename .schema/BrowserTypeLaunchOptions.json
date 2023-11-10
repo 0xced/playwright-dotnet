@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Microsoft.Playwright.BrowserTypeLaunchOptions",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "args": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Additional arguments to pass to the browser instance. The list of Chromium flags can be found [here](http://peter.sh/experiments/chromium-command-line-switches/)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Browser distribution channel.  Supported values are \"chrome\", \"chrome-beta\", \"chrome-dev\", \"chrome-canary\", \"msedge\", \"msedge-beta\", \"msedge-dev\", \"msedge-canary\". Read more about using [Google Chrome and Microsoft Edge](https://playwright.dev/dotnet/docs/browsers#google-chrome--microsoft-edge)"
+    },
+    "chromiumSandbox": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Enable Chromium sandboxing. Defaults to `false`"
+    },
+    "devtools": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "**Chromium-only** Whether to auto-open a Developer Tools panel for each tab. If this option is `true`, the headless option will be set `false`"
+    },
+    "downloadsPath": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "If specified, accepted downloads are downloaded into this directory. Otherwise, temporary directory is created and is deleted when browser is closed. In either case, the downloads are deleted when the browser context they were created in is closed"
+    },
+    "env": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Specify environment variables that will be visible to the browser. Defaults to `process.env`",
+      "items": {
+        "$ref": "#/definitions/KeyValuePairOfStringAndString"
+      }
+    },
+    "executablePath": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Path to a browser executable to run instead of the bundled one. If executablePath is a relative path, then it is resolved relative to the current working directory. Note that Playwright only works with the bundled Chromium, Firefox or WebKit, use at your own risk"
+    },
+    "firefoxUserPrefs": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Firefox user preferences. Learn more about the Firefox user preferences at [about:config](https://support.mozilla.org/en-US/kb/about-config-editor-firefox)",
+      "items": {
+        "$ref": "#/definitions/KeyValuePairOfStringAndObject"
+      }
+    },
+    "handleSIGHUP": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Close the browser process on SIGHUP. Defaults to `true`"
+    },
+    "handleSIGINT": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Close the browser process on Ctrl-C. Defaults to `true`"
+    },
+    "handleSIGTERM": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Close the browser process on SIGTERM. Defaults to `true`"
+    },
+    "headless": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Whether to run browser in headless mode. More details for [Chromium](https://developers.google.com/web/updates/2017/04/headless-chrome) and [Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode). Defaults to `true` unless the devtools option is `true`"
+    },
+    "ignoreAllDefaultArgs": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "If `true`, Playwright does not pass its own configurations args and only uses the ones from args. Dangerous option; use with care. Defaults to `false`"
+    },
+    "ignoreDefaultArgs": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "If `true`, Playwright does not pass its own configurations args and only uses the ones from args. Dangerous option; use with care",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proxy": {
+      "description": "Network proxy settings",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/Proxy"
+        }
+      ]
+    },
+    "slowMo": {
+      "type": [
+        "null",
+        "number"
+      ],
+      "description": "Slows down Playwright operations by the specified amount of milliseconds. Useful so that you can see what is going on",
+      "format": "float"
+    },
+    "timeout": {
+      "type": [
+        "null",
+        "number"
+      ],
+      "description": "Maximum time in milliseconds to wait for the browser instance to start. Defaults to `30000` (30 seconds). Pass `0` to disable timeout",
+      "format": "float"
+    },
+    "tracesDir": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "If specified, traces are saved into this directory"
+    }
+  },
+  "definitions": {
+    "KeyValuePairOfStringAndString": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "KeyValuePairOfStringAndObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {}
+      }
+    },
+    "Proxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "server"
+      ],
+      "properties": {
+        "server": {
+          "type": "string",
+          "description": "Proxy to be used for all requests. HTTP and SOCKS proxies are supported, for example\n`http://myproxy.com:3128` or `socks5://myproxy.com:3128`. Short form `myproxy.com:3128`\nis considered an HTTP proxy.",
+          "minLength": 1
+        },
+        "bypass": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Optional comma-separated domains to bypass proxy, for example `\".com, chromium.org,\n.domain.com\"`."
+        },
+        "username": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Optional username to use if HTTP proxy requires authentication."
+        },
+        "password": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Optional password to use if HTTP proxy requires authentication."
+        }
+      }
+    }
+  }
+}

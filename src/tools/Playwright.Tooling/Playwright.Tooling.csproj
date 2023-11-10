@@ -5,11 +5,18 @@
         <TargetFramework>net6.0</TargetFramework>
         <ReleaseVersion>0.0.0</ReleaseVersion>
         <IsTool>true</IsTool>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);CS1734</NoWarn>
     </PropertyGroup>
     <Import Project="../../Common/Dependencies.props" />
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
+        <PackageReference Include="NJsonSchema" Version="11.0.0-preview006" />
         <PackageReference Include="Spectre.Console.Cli" Version="0.47.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="../../Playwright/API/Generated/Options/BrowserTypeLaunchOptions.cs" Link="Schemas/BrowserTypeLaunchOptions.cs" />
+      <Compile Include="../../Playwright/API/Generated/Types/Proxy.cs" Link="Schemas/Proxy.cs" />
     </ItemGroup>
 </Project>
