@@ -29,8 +29,6 @@ namespace Microsoft.Playwright.Xunit;
 
 public class PlaywrightTest : WorkerAwareTest
 {
-    public string BrowserName { get; internal set; } = null!;
-
     private static readonly Task<IPlaywright> _playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
 
     public IPlaywright Playwright { get; private set; } = null!;
@@ -40,8 +38,7 @@ public class PlaywrightTest : WorkerAwareTest
     {
         await base.InitializeAsync().ConfigureAwait(false);
         Playwright = await _playwrightTask.ConfigureAwait(false);
-        BrowserName = PlaywrightSettingsProvider.BrowserName;
-        BrowserType = Playwright[BrowserName];
+        BrowserType = Playwright[PlaywrightSettingsProvider.BrowserName];
         Playwright.Selectors.SetTestIdAttribute("data-testid");
     }
 
