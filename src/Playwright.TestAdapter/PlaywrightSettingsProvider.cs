@@ -104,4 +104,10 @@ public class PlaywrightSettingsProvider : ISettingsProvider
 
     public void Load(XmlReader reader)
         => _settings = new PlaywrightSettingsXml(reader);
+
+    public static void Load(PlaywrightSettings settings)
+    {
+        using var reader = settings.CreateXmlReader();
+        _settings = new PlaywrightSettingsXml(reader);
+    }
 }

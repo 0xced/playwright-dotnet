@@ -57,6 +57,20 @@ public class WorkerAwareTest : ExceptionCapturer
         return (_currentWorker.Services[name] as T)!;
     }
 
+    protected virtual PlaywrightSettings? PlaywrightSettings()
+    {
+        return null;
+    }
+
+    private void  LoadPlaywrightSettings()
+    {
+        var settings = PlaywrightSettings();
+        if (settings != null)
+        {
+            PlaywrightSettingsProvider.Load(settings);
+        }
+    }
+
     async public override Task InitializeAsync()
     {
         await base.InitializeAsync().ConfigureAwait(false);
@@ -65,6 +79,10 @@ public class WorkerAwareTest : ExceptionCapturer
             _currentWorker = new();
         }
         WorkerIndex = _currentWorker.WorkerIndex;
+
+        // Must be run before accessing any static PlaywrightSettingsProvider.* properties
+        LoadPlaywrightSettings();
+
         if (PlaywrightSettingsProvider.ExpectTimeout.HasValue)
         {
             AssertionsBase.SetDefaultTimeout(PlaywrightSettingsProvider.ExpectTimeout.Value);
@@ -103,7 +121,7 @@ public interface IWorkerService
 /// ExceptionCapturer is a best-effort way of detecting if a test did pass or fail in xUnit.
 /// This class uses the AppDomain's FirstChanceException event to set a flag indicating
 /// whether an exception has occurred during the test execution.
-/// 
+///
 /// Note: There is no way of getting the test status in xUnit in the dispose method.
 /// For more information, see: https://stackoverflow.com/questions/28895448/current-test-status-in-xunit-net
 /// </summary>
