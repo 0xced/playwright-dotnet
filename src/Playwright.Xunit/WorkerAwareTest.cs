@@ -87,6 +87,12 @@ public class WorkerAwareTest : ExceptionCapturer
         {
             AssertionsBase.SetDefaultTimeout(PlaywrightSettingsProvider.ExpectTimeout.Value);
         }
+
+        var result = Program.Main(["install", "--with-deps", PlaywrightSettingsProvider.BrowserName]);
+        if (result != 0)
+        {
+            throw new PlaywrightException($"Failed to install Playwright for {PlaywrightSettingsProvider.BrowserName}.");
+        }
     }
 
     public async override Task DisposeAsync()
