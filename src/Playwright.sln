@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31516.353
@@ -38,6 +38,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.Xunit.v3", "Playwright.Xunit.v3\Playwright.Xunit.v3.csproj", "{6CFF37A8-7C6B-4203-9BF7-3A83752653E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playwright.MSTest.v4", "Playwright.MSTest.v4\Playwright.MSTest.v4.csproj", "{391F8C08-8C76-4D26-BBCF-8A3E00252075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "playwright-cli", "playwright-cli\playwright-cli.csproj", "{121D5B6B-2E38-4CEA-938C-9260A805E21C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "playwright-xunit", "playwright-xunit\playwright-xunit.csproj", "{38046870-E03A-4391-A0A0-5A9E680238D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{391F8C08-8C76-4D26-BBCF-8A3E00252075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391F8C08-8C76-4D26-BBCF-8A3E00252075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391F8C08-8C76-4D26-BBCF-8A3E00252075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{121D5B6B-2E38-4CEA-938C-9260A805E21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121D5B6B-2E38-4CEA-938C-9260A805E21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121D5B6B-2E38-4CEA-938C-9260A805E21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121D5B6B-2E38-4CEA-938C-9260A805E21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38046870-E03A-4391-A0A0-5A9E680238D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38046870-E03A-4391-A0A0-5A9E680238D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38046870-E03A-4391-A0A0-5A9E680238D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38046870-E03A-4391-A0A0-5A9E680238D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
